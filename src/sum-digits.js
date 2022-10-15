@@ -16,7 +16,7 @@ function getSumOfDigits(num) {
   const x = num
     .toString()
     .split('')
-    .reduce((acc, cur) => +acc + +cur, 0);
+    .reduce((acc, cur) => acc + +cur, 0);
   return num.toString().length > 1 ? getSumOfDigits(x) : x;
 }
 
