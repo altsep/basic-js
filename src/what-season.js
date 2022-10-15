@@ -12,14 +12,11 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function getSeason(d) {
-  const isDate = d instanceof Date;
+  if (typeof d === 'undefined') return 'Unable to determine the time of year!';
+  const isDate = d && d instanceof Date;
+  if (!isDate || d.hasOwnProperty('toString')) throw new Error('Invalid date!');
   const mm = isDate && d.getUTCMonth();
-  console.log(d instanceof Date, mm, d && d.toLocaleString('en-US'));
   switch (true) {
-    case !d:
-      return 'Unable to determine the time of year!';
-    case !isDate:
-      throw new Error('Invalid date!');
     case mm === 11 || (mm >= 0 && mm <= 1):
       return 'winter';
     case mm <= 4:
